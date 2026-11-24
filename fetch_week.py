@@ -20,19 +20,33 @@ def add(title,min,kind='normal',ref='',summary='',url=''):
  items.append(dict(title=title,min=min,kind=kind,ref=ref,summary=summary,url=url))
 # Extract short source headings only; no AI or invented summary.
 summary_cache={}
+def extract_points(article,ref):
+ if not article:return []
+ points=[]
+ target=re.search(r'(?:kohta|kpl\.?|:)\s*(\d+)',ref,re.I)
+ scope=article
+ if target:
+  for node in article.select('p,li'):
+   if re.match(r'^'+target[1]+r'[.\s]',node.get_text(' ',strip=True)):
+    scope=node;break
+ for node in scope.select('strong,b,span.bold,span[class*="bold"]'):
+  text=node.get_text(' ',strip=True)
+  if 5<=len(text)<=150 and 2<=len(text.split())<=20 and text not in points:points.append(text)
+  if len(points)==4:break
+ return points
 def feedback(href,ref):
  if not href:return ''
- if href not in summary_cache:
+ key=(href,ref)
+ if key not in summary_cache:
   try:
-   page=get(href); article=page.select_one('article, #article'); points=[]
-   if article:
-    for node in article.select('li > p > strong, li > p > b, li > strong, li > b, p > strong, p > b'):
-     text=node.get_text(' ',strip=True)
-     if 3<=len(text)<=100 and len(text.split())<=12 and text not in points:points.append(text)
-     if len(points)==4:break
-   summary_cache[href]='\n'.join('• '+t for t in points) if points else ''
-  except requests.RequestException:summary_cache[href]=''
- return summary_cache[href] or 'Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.'
+   page=get(href); article=page.select_one('article, #article, #articleContent')
+   points=extract_points(article,ref)
+   summary_cache[key]='\n'.join('• '+t for t in points) if points else ''
+  except requests.RequestException as exc:
+   print('Palautekoosteen haku epäonnistui:',href,exc)
+   summary_cache[key]=''
+ print('Palautekooste:',ref, 'OK' if summary_cache[key] else 'EI LÖYTYNYT',href)
+ return summary_cache[key] or 'Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.'
 for e in a.select('h2,h3,p'):
  t=' '.join(e.stripped_strings)
  if e.name=='h2': section=t.upper()
@@ -64,8 +78,8 @@ for e in a.select('h2,h3,p'):
    ref=''; href=''
    for l in e.select('a[href]'):
     z=l.get_text(' ',strip=True)
-    if re.match(r'(th\s+osio|lmd\s+oppijakso)',z):ref=z;href=urljoin(source,l['href']);break
-   if 'VALMENNUSTA' in section and ref:kind='student' if re.search(r'Puhe',pending) else 'pair'
+    if re.search(r'\b(?:th|lmd)\s*(?:osio|oppijakso)?\s*\d+',z,re.I):ref=z;href=urljoin(source,l['href']);break
+   if 'VALMENNUSTA' in section and (ref or re.search(r'keskustel|kiinnost|opetus|puhe|raamatuntutkistelu',pending,re.I)):kind='student' if re.search(r'Puhe',pending) else 'pair'
    add(pending,int(m[1]),kind,ref,feedback(href,ref) if ref else '',href);pending=None
 if len(items)<8 or not all(any(x['kind']==k for x in items) for k in ['closing','study','prayer']):raise SystemExit('Poikkeava ohjelma; tarkista käsin.')
 label=next((e.get_text(' ',strip=True) for e in a.select('h2') if not any(k in e.get_text().upper() for k in ['AARTEITA','VALMENNUSTA','ELÄMÄ'])), '')
