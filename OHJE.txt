@@ -1,0 +1,10 @@
+PJ-työkalu 2.0 – GitHub Pages
+1. Luo GitHubissa uusi julkinen repository, esimerkiksi pj-tool.
+2. Pura ZIP tietokoneella. Vie kaikki tiedostot (myös .github/workflows/weekly.yml) repositoryn juureen. Älä lisää henkilötietoja. Yksittäisen workflow-tiedoston voi luoda GitHubin Add file / Create new file -toiminnolla.
+3. Settings > Pages > Deploy from a branch > main / (root) > Save.
+4. Avaa Pagesin ilmoittama HTTPS-osoite Safarissa. Jaa > Lisää Koti-valikkoon.
+5. Actions > Viikko-ohjelman päivitys > Run workflow. Tarkista onnistuminen. Automaattihaku on kokeellinen, ei testattu live-sivustolla. Tarkista myös sivuston käyttöehdot ennen ajastuksen käyttöönottoa. Ajastus maanantaisin; jos ei haluta automaattista hakua, poista schedule workflowsta.
+6. Jos haku ei onnistu, avaa virallinen lähde ja kopioi ohjelmateksti varatuontiin tai lisää kortit käsin. Tulevien viikkojen palautekoosteet täydennetään käsin; lähdelinkit pyritään tuomaan automaattisesti.
+Huom: GitHub Actionsin botin commit ei välttämättä käynnistä branch-pohjaista Pages-julkaisua; tällöin julkaise muutos käsin tai ota käyttöön erillinen Pages-deploy-workflow.
+Nimet ja muistiinpanot ovat selaimen localStorage-tallennuksessa, eivät GitHubissa. Tallennus ei ole salattu eikä synkronoidu laitteiden välillä. Älä käytä jaettua laitetta. Tyhjennä tiedot tarvittaessa.
+Laulu- ja rukousajat ovat arvioita. Joustovara näkyy ohjelman lopussa, mutta on tarkoitettu myös siirtymiin. Tarkista erikoisviikot itse.
