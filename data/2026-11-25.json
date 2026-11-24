@@ -8,7 +8,8 @@
       "kind": "song",
       "ref": "",
       "url": "",
-      "section": ""
+      "section": "",
+      "description": []
     },
     {
       "title": "Alkurukous",
@@ -16,7 +17,8 @@
       "kind": "prayer",
       "ref": "",
       "url": "",
-      "section": ""
+      "section": "",
+      "description": []
     },
     {
       "title": "Alkusanat",
@@ -24,7 +26,8 @@
       "kind": "chair",
       "ref": "",
       "url": "",
-      "section": ""
+      "section": "",
+      "description": []
     },
     {
       "title": "1. Älä luovuta!",
@@ -32,7 +35,8 @@
       "kind": "normal",
       "ref": "",
       "url": "",
-      "section": "treasures"
+      "section": "treasures",
+      "description": []
     },
     {
       "title": "2. Hengellisiä helmiä",
@@ -40,7 +44,8 @@
       "kind": "normal",
       "ref": "",
       "url": "",
-      "section": "treasures"
+      "section": "treasures",
+      "description": []
     },
     {
       "title": "3. Raamatun lukeminen",
@@ -48,7 +53,27 @@
       "kind": "student",
       "ref": "th osio 12",
       "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/4/0",
-      "section": "treasures"
+      "section": "treasures",
+      "description": [
+        {
+          "text": "Va 3:19–42",
+          "bold": false,
+          "italic": false,
+          "url": "https://wol.jw.org/fi/wol/bc/r16/lp-fi/202026404/5/0"
+        },
+        {
+          "text": " (",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        },
+        {
+          "text": ")",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        }
+      ]
     },
     {
       "title": "4. Keskustelujen aloittaminen",
@@ -56,7 +81,45 @@
       "kind": "pair",
       "ref": "lmd oppijakso 5 kohta 4",
       "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/6/0",
-      "section": "ministry"
+      "section": "ministry",
+      "description": [
+        {
+          "text": "OVELTA OVELLE -TYÖ. Kerro jokin ajatus Raamatusta esimerkiksi ",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        },
+        {
+          "text": "Rakasta ihmisiä",
+          "bold": false,
+          "italic": true,
+          "url": ""
+        },
+        {
+          "text": " -kirjasen ",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        },
+        {
+          "text": "liitteestä A",
+          "bold": false,
+          "italic": false,
+          "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/5/0"
+        },
+        {
+          "text": ". (",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        },
+        {
+          "text": ")",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        }
+      ]
     },
     {
       "title": "5. Keskustelujen aloittaminen",
@@ -64,7 +127,21 @@
       "kind": "pair",
       "ref": "lmd oppijakso 4 kohta 3",
       "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/7/0",
-      "section": "ministry"
+      "section": "ministry",
+      "description": [
+        {
+          "text": "VAPAAMUOTOINEN TODISTAMINEN. Käytä traktaattia. (",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        },
+        {
+          "text": ")",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        }
+      ]
     },
     {
       "title": "6. Puhe",
@@ -72,7 +149,33 @@
       "kind": "student",
       "ref": "th osio 16",
       "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/9/0",
-      "section": "ministry"
+      "section": "ministry",
+      "description": [
+        {
+          "text": "w25.12",
+          "bold": false,
+          "italic": true,
+          "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/8/0"
+        },
+        {
+          "text": " 26–30",
+          "bold": false,
+          "italic": false,
+          "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/8/0"
+        },
+        {
+          "text": ". Teema: Iäkkäillä on tärkeä rooli seurakunnassa. (",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        },
+        {
+          "text": ")",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        }
+      ]
     },
     {
       "title": "Laulu 109 – Rakastamme toisiamme",
@@ -80,7 +183,8 @@
       "kind": "song",
       "ref": "",
       "url": "",
-      "section": "living"
+      "section": "living",
+      "description": []
     },
     {
       "title": "7. Miten auttaa niitä jotka hoitavat läheistään?",
@@ -88,7 +192,15 @@
       "kind": "normal",
       "ref": "",
       "url": "",
-      "section": "living"
+      "section": "living",
+      "description": [
+        {
+          "text": "Keskustelu.",
+          "bold": false,
+          "italic": false,
+          "url": ""
+        }
+      ]
     },
     {
       "title": "8. Seurakunnan raamatuntutkistelu",
@@ -96,7 +208,21 @@
       "kind": "study",
       "ref": "",
       "url": "",
-      "section": "living"
+      "section": "living",
+      "description": [
+        {
+          "text": "wcg",
+          "bold": false,
+          "italic": true,
+          "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/12/0"
+        },
+        {
+          "text": " luku 18",
+          "bold": false,
+          "italic": false,
+          "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/12/0"
+        }
+      ]
     },
     {
       "title": "Loppusanat ja ilmoitukset",
@@ -104,7 +230,8 @@
       "kind": "closing",
       "ref": "",
       "url": "",
-      "section": "living"
+      "section": "living",
+      "description": []
     },
     {
       "title": "Laulu 74 – Tule mukaan laulamaan valtakunnasta!",
@@ -112,7 +239,8 @@
       "kind": "song",
       "ref": "",
       "url": "",
-      "section": "living"
+      "section": "living",
+      "description": []
     },
     {
       "title": "Loppurukous",
@@ -120,7 +248,8 @@
       "kind": "prayer",
       "ref": "",
       "url": "",
-      "section": "living"
+      "section": "living",
+      "description": []
     }
   ]
 }
