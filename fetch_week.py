@@ -1,9 +1,10 @@
 """Experimental public-program importer. No personal data is read or sent."""
 import datetime as dt,json,re,pathlib,sys
+from zoneinfo import ZoneInfo
 import requests
 from bs4 import BeautifulSoup
 root='https://wol.jw.org/fi/wol/'
-d=dt.date.fromisoformat(sys.argv[1]) if len(sys.argv)>1 else dt.date.today()
+d=dt.date.fromisoformat(sys.argv[1]) if len(sys.argv)>1 else dt.datetime.now(ZoneInfo("Europe/Helsinki")).date()
 d+=dt.timedelta(days=2-d.weekday()); y,w,_=d.isocalendar()
 url=f'{root}meetings/r16/lp-fi/{y}/{w}'
 def get(u):
@@ -24,7 +25,19 @@ for e in a.select('h2,h3,p'):
   m=re.search(r'Laulu\s+(\d+)',t,re.I)
   if m:
    if 'Loppusanat' in t:add('Loppusanat ja ilmoitukset',3,'closing')
-   first=not items;add('Laulu '+m[1],3,'song')
+   first=not items
+   title='Laulu '+m[1]
+   for link in e.select('a[href]'):
+    if re.search(r'Laulu\s+'+m[1]+r'\b',link.get_text(' ',strip=True),re.I):
+     try:
+      page=get(urljoin(source,link['href']))
+      heading=page.select_one('article h1, #article h1')
+      if heading:
+       name=heading.get_text(' ',strip=True)
+       if name and not re.fullmatch(r'Laulu\s+\d+',name,re.I):title+=' – '+name
+     except requests.RequestException:pass
+     break
+   add(title,3,'song')
    if 'rukous' in t.lower():
     add('Alkurukous' if first else 'Loppurukous',1,'prayer')
     if first:add('Alkusanat',1,'chair')
