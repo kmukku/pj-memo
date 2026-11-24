@@ -1,0 +1,126 @@
+{
+  "source": "https://wol.jw.org/fi/wol/d/r16/lp-fi/202026404",
+  "label": "VALITUSLAULUT 3–5",
+  "items": [
+    {
+      "title": "Laulu 158 – Se ei myöhästy!",
+      "min": 3,
+      "kind": "song",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Alkurukous",
+      "min": 1,
+      "kind": "prayer",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Alkusanat",
+      "min": 1,
+      "kind": "chair",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "1. Älä luovuta!",
+      "min": 10,
+      "kind": "normal",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "2. Hengellisiä helmiä",
+      "min": 10,
+      "kind": "normal",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "3. Raamatun lukeminen",
+      "min": 4,
+      "kind": "student",
+      "ref": "th osio 12",
+      "summary": "Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.",
+      "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/4/0"
+    },
+    {
+      "title": "4. Keskustelujen aloittaminen",
+      "min": 3,
+      "kind": "pair",
+      "ref": "lmd oppijakso 5 kohta 4",
+      "summary": "Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.",
+      "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/6/0"
+    },
+    {
+      "title": "5. Keskustelujen aloittaminen",
+      "min": 4,
+      "kind": "pair",
+      "ref": "lmd oppijakso 4 kohta 3",
+      "summary": "Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.",
+      "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/7/0"
+    },
+    {
+      "title": "6. Puhe",
+      "min": 5,
+      "kind": "student",
+      "ref": "th osio 16",
+      "summary": "Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.",
+      "url": "https://wol.jw.org/fi/wol/pc/r16/lp-fi/202026404/9/0"
+    },
+    {
+      "title": "Laulu 109 – Rakastamme toisiamme",
+      "min": 3,
+      "kind": "song",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "7. Miten auttaa niitä jotka hoitavat läheistään?",
+      "min": 15,
+      "kind": "normal",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "8. Seurakunnan raamatuntutkistelu",
+      "min": 30,
+      "kind": "study",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Loppusanat ja ilmoitukset",
+      "min": 3,
+      "kind": "closing",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Laulu 74 – Tule mukaan laulamaan valtakunnasta!",
+      "min": 3,
+      "kind": "song",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "title": "Loppurukous",
+      "min": 1,
+      "kind": "prayer",
+      "ref": "",
+      "summary": "",
+      "url": ""
+    }
+  ]
+}
