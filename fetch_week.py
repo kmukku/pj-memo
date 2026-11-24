@@ -2,7 +2,7 @@
 import datetime as dt,json,re,pathlib,sys
 from zoneinfo import ZoneInfo
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString, Tag
 root='https://wol.jw.org/fi/wol/'
 d=dt.date.fromisoformat(sys.argv[1]) if len(sys.argv)>1 else dt.datetime.now(ZoneInfo("Europe/Helsinki")).date()
 d+=dt.timedelta(days=2-d.weekday()); y,w,_=d.isocalendar()
@@ -16,8 +16,26 @@ if not links: raise SystemExit('Viikon ohjelmalinkkiä ei tunnistettu; vanhaa ai
 source=urljoin(url,links[0]['href']);s=get(source);a=s.select_one('article') or s.select_one('#article');
 if not a: raise SystemExit('Artikkelia ei löydy')
 items=[]; section=''; pending=None
-def add(title,min,kind='normal',ref='',summary='',url=''):
- items.append(dict(title=title,min=min,kind=kind,ref=ref,url=url,section=section))
+def add(title,min,kind='normal',ref='',summary='',url='',description=None):
+ items.append(dict(title=title,min=min,kind=kind,ref=ref,url=url,section=section,description=description or []))
+def describe(e,ref):
+ parts=[]
+ def walk(node,bold=False,italic=False,href=''):
+  if isinstance(node,NavigableString):
+   parts.append(dict(text=str(node),bold=bold,italic=italic,url=href));return
+  if not isinstance(node,Tag):return
+  if node.name=='a':
+   if ref and node.get_text(' ',strip=True)==ref:return
+   href=urljoin(source,node.get('href',''))
+  for child in node.children:walk(child,bold or node.name in ('b','strong'),italic or node.name in ('i','em'),href)
+ walk(e)
+ if parts:
+  for part in parts:part['text']=re.sub(r'\(\d+\s*min\)', '',part['text'],count=1)
+  while parts and not parts[0]['text'].strip():parts.pop(0)
+  if parts:parts[0]['text']=parts[0]['text'].lstrip()
+  while parts and not parts[-1]['text'].strip():parts.pop()
+  if parts:parts[-1]['text']=re.sub(r'\(\s*\)\s*$','',parts[-1]['text']).rstrip()
+ return parts
 for e in a.select('h2,h3,p'):
  t=' '.join(e.stripped_strings)
  if e.name=='h2':
@@ -52,9 +70,9 @@ for e in a.select('h2,h3,p'):
    ref=''; href=''
    for l in e.select('a[href]'):
     z=l.get_text(' ',strip=True)
-    if re.search(r'\b(?:th|lmd)\s*(?:osio|oppijakso)?\s*\d+',z,re.I):ref=z;href=urljoin(source,l['href']);break
+    if re.search(r'\b(?:th|lmd)\s*(?:osio|oppijakso|tutkielma)?\s*\d+',z,re.I):ref=z;href=urljoin(source,l['href']);break
    if section=='ministry' and (ref or re.search(r'keskustel|kiinnost|opetus|puhe|raamatuntutkistelu',pending,re.I)):kind='student' if re.search(r'Puhe',pending) else 'pair'
-   add(pending,int(m[1]),kind,ref,'',href);pending=None
+   add(pending,int(m[1]),kind,ref,'',href,describe(e,ref));pending=None
 if len(items)<8 or not all(any(x['kind']==k for x in items) for k in ['closing','study','prayer']):raise SystemExit('Poikkeava ohjelma; tarkista käsin.')
 label=next((e.get_text(' ',strip=True) for e in a.select('h2') if not any(k in e.get_text().upper() for k in ['AARTEITA','VALMENNUSTA','ELÄMÄ'])), '')
 p=pathlib.Path('data')/(str(d)+'.json');p.parent.mkdir(exist_ok=True);p.write_text(json.dumps(dict(source=source,label=label,items=items),ensure_ascii=False,indent=2))
