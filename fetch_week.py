@@ -18,6 +18,21 @@ if not a: raise SystemExit('Artikkelia ei löydy')
 items=[]; section=''; pending=None
 def add(title,min,kind='normal',ref='',summary='',url=''):
  items.append(dict(title=title,min=min,kind=kind,ref=ref,summary=summary,url=url))
+# Extract short source headings only; no AI or invented summary.
+summary_cache={}
+def feedback(href,ref):
+ if not href:return ''
+ if href not in summary_cache:
+  try:
+   page=get(href); article=page.select_one('article, #article'); points=[]
+   if article:
+    for node in article.select('li > p > strong, li > p > b, li > strong, li > b, p > strong, p > b'):
+     text=node.get_text(' ',strip=True)
+     if 3<=len(text)<=100 and len(text.split())<=12 and text not in points:points.append(text)
+     if len(points)==4:break
+   summary_cache[href]='\n'.join('• '+t for t in points) if points else ''
+  except requests.RequestException:summary_cache[href]=''
+ return summary_cache[href] or 'Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.'
 for e in a.select('h2,h3,p'):
  t=' '.join(e.stripped_strings)
  if e.name=='h2': section=t.upper()
@@ -51,7 +66,7 @@ for e in a.select('h2,h3,p'):
     z=l.get_text(' ',strip=True)
     if re.match(r'(th\s+osio|lmd\s+oppijakso)',z):ref=z;href=urljoin(source,l['href']);break
    if 'VALMENNUSTA' in section and ref:kind='student' if re.search(r'Puhe',pending) else 'pair'
-   add(pending,int(m[1]),kind,ref,'Tarkista tutkittava kohta lähdelinkistä ja lisää oma kooste.' if ref else '',href);pending=None
+   add(pending,int(m[1]),kind,ref,feedback(href,ref) if ref else '',href);pending=None
 if len(items)<8 or not all(any(x['kind']==k for x in items) for k in ['closing','study','prayer']):raise SystemExit('Poikkeava ohjelma; tarkista käsin.')
 label=next((e.get_text(' ',strip=True) for e in a.select('h2') if not any(k in e.get_text().upper() for k in ['AARTEITA','VALMENNUSTA','ELÄMÄ'])), '')
 p=pathlib.Path('data')/(str(d)+'.json');p.parent.mkdir(exist_ok=True);p.write_text(json.dumps(dict(source=source,label=label,items=items),ensure_ascii=False,indent=2))
