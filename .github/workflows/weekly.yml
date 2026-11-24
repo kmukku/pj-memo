@@ -3,7 +3,8 @@ name: Viikko-ohjelman päivitys
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 4 * * *'
+    - cron: '0 6 * * 1'
+      timezone: 'Europe/Helsinki'
 
 permissions:
   contents: write
